@@ -12,18 +12,22 @@ class NAVMESHDEMO_API AEnemy : public APawn
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
 	AEnemy();
 
 protected:
-	// Called when the game starts or when spawned
+	//List of all private Functions
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
+	//List of all public Functions
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+protected:
+	//List of all UPropertys
+	UPROPERTY(EditAnywhere, Category = "Enemy")
+		UStaticMeshComponent* StaticMesh;
+
 
 };

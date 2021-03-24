@@ -1,31 +1,41 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Enemy.h"
+#include "EnemyAIController.h"
 
-// Sets default values
+#include "Components/StaticMeshComponent.h"
+
+#include "UObject/ConstructorHelpers.h"
+
 AEnemy::AEnemy()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	AIControllerClass = AEnemyAIController::StaticClass();
+	
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> CylinderAsset(TEXT("/Engine/BasicShapes/Cone"));
+	StaticMesh->SetStaticMesh(CylinderAsset.Object);
+
+
+	static ConstructorHelpers::FObjectFinder<UMaterial> MaterialAsset(TEXT("/Game/Materials/Enemy"));
+	StaticMesh->SetMaterial(0, Cast<UMaterialInterface>(MaterialAsset.Object));
+
+
+	SetRootComponent(StaticMesh);
 
 }
 
-// Called when the game starts or when spawned
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
-// Called to bind functionality to input
 void AEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);

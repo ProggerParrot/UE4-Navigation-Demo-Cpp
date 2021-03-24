@@ -8,4 +8,5 @@
 ANavmeshDemoGameModeBase::ANavmeshDemoGameModeBase()
 {
 	PlayerControllerClass = ADefaultPlayerController::StaticClass();
+	
 }

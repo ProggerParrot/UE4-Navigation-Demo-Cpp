@@ -6,24 +6,66 @@
 #include "GameFramework/Pawn.h"
 #include "Mothership.generated.h"
 
+
+
 UCLASS()
 class NAVMESHDEMO_API AMothership : public APawn
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
 	AMothership();
 
 protected:
-	// Called when the game starts or when spawned
+	//List of all private Functions
 	virtual void BeginPlay() override;
+	
+	void SpawnDrone(int index);
+	
+	void CheckFocusInRange();
+	
+	void ShootAtFocused();
 
-public:	
-	// Called every frame
+
+public:
+	//List of all public Functions
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	void FocusEnemy(AActor* Target);
+
+
+protected:
+	//List of all UPropertys
+	UPROPERTY(EditAnywhere, Category = "Mothership")
+		UStaticMeshComponent* StaticMesh;
+
+	UPROPERTY(EditAnywhere, Category = "Mothership")
+		TSubclassOf<class ADrone> DroneClass;
+
+	UPROPERTY(EditAnywhere, Category = "Mothership")
+		int DronesToSpawn;
+
+	UPROPERTY(EditAnywhere, Category = "Mothership")
+		float OrbitRadius;
+
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		TSubclassOf<class ABullet> BulletClass;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		class USphereComponent* Sphere;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		float Cooldown;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		float ShootingRange;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		AActor* CurrentFokused;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		float CurrentCooldown;
 
 };
+

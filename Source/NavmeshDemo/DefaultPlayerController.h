@@ -15,7 +15,6 @@ class NAVMESHDEMO_API ADefaultPlayerController : public APlayerController
 	GENERATED_BODY()
 
 
-
 public:
 
 	virtual void SetupInputComponent() override;

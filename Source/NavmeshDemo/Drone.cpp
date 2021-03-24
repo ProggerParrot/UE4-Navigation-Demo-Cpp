@@ -1,31 +1,39 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Drone.h"
+#include "DroneAIController.h"
+#include "Components/StaticMeshComponent.h"
+#include "UObject/ConstructorHelpers.h"
 
-// Sets default values
+
 ADrone::ADrone()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	AIControllerClass = ADroneAIController::StaticClass();
+
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> CylinderAsset(TEXT("/Engine/BasicShapes/Sphere"));
+	StaticMesh->SetStaticMesh(CylinderAsset.Object);
+
+
+	static ConstructorHelpers::FObjectFinder<UMaterial> MaterialAsset(TEXT("/Game/Materials/Drone"));
+	StaticMesh->SetMaterial(0, Cast<UMaterialInterface>(MaterialAsset.Object));
+
+
+	SetRootComponent(StaticMesh);
 }
 
-// Called when the game starts or when spawned
 void ADrone::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
 void ADrone::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
-// Called to bind functionality to input
 void ADrone::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
