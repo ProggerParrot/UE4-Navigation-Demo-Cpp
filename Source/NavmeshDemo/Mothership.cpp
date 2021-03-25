@@ -11,28 +11,35 @@
 #include "UObject/ConstructorHelpers.h"
 
 
+#include "Materials/MaterialInstanceDynamic.h" 
+
+
 AMothership::AMothership()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> CylinderAsset(TEXT("/Engine/BasicShapes/Cube"));
 	StaticMesh->SetStaticMesh(CylinderAsset.Object);
 
-
 	static ConstructorHelpers::FObjectFinder<UMaterial> MaterialAsset(TEXT("/Game/Materials/Mothership"));
 	StaticMesh->SetMaterial(0, Cast<UMaterialInterface>(MaterialAsset.Object));
 
-
 	SetRootComponent(StaticMesh);
+
 
 	Sphere = CreateDefaultSubobject<USphereComponent>("Detection Sphere");
 	Sphere->InitSphereRadius(500.0f);
 	Sphere->SetupAttachment(RootComponent);
 
+
 	ShootingRange = 2000.0f;
 	Cooldown = 2.0f;
 	CurrentCooldown = 0.0f;
+
+	DronesToSpawn = 25;
+	OrbitRadius = 1000.0f;
 }
 
 
@@ -81,15 +88,10 @@ void AMothership::SpawnDrone(int index)
 	Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	Params.bNoFail = true;
 	Params.Owner = this;
-
-
-	if (DroneClass == nullptr)
-		return;
 	
-	ADrone* Drone = GetWorld()->SpawnActor<ADrone>(DroneClass, Transform, Params);
-
-	//Drone->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
+	ADrone* Drone = GetWorld()->SpawnActor<ADrone>(ADrone::StaticClass(), Transform, Params);
 }
+
 
 void AMothership::CheckFocusInRange()
 {
@@ -105,16 +107,9 @@ void AMothership::CheckFocusInRange()
 	}
 }
 
+
 void AMothership::ShootAtFocused()
 {
-	CurrentCooldown = Cooldown;
-
-	if (BulletClass == nullptr)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("<Mothership.cpp>  No Bulletclass - Please add one in BP_Mothership!"));
-		return;
-	}
-
 	FTransform Transform;
 	Transform.SetLocation(GetActorLocation());
 	Transform.SetRotation(GetActorRotation().Quaternion());
@@ -124,9 +119,9 @@ void AMothership::ShootAtFocused()
 	Params.bNoFail = true;
 	Params.Owner = this;
 
-	ABullet* Bullet = GetWorld()->SpawnActor<ABullet>(BulletClass, Transform, Params);
+	ABullet* Bullet = GetWorld()->SpawnActor<ABullet>(ABullet::StaticClass(), Transform, Params);
 
-
+	CurrentCooldown = Cooldown;
 }
 
 

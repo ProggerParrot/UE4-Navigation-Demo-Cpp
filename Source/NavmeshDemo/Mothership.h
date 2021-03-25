@@ -46,7 +46,7 @@ protected:
 		int DronesToSpawn;
 
 	UPROPERTY(EditAnywhere, Category = "Mothership")
-		float OrbitRadius;
+		double OrbitRadius;
 
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
@@ -56,16 +56,16 @@ protected:
 		class USphereComponent* Sphere;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
-		float Cooldown;
+		double Cooldown;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
-		float ShootingRange;
+		double ShootingRange;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 		AActor* CurrentFokused;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
-		float CurrentCooldown;
+		double CurrentCooldown;
 
 };
 

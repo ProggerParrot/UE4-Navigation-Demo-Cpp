@@ -17,4 +17,10 @@ class NAVMESHDEMO_API ANavmeshDemoGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 
 	ANavmeshDemoGameModeBase();
+
+	virtual void BeginPlay() override;
+
+private:
+
+	void SpawnMothership();
 };
