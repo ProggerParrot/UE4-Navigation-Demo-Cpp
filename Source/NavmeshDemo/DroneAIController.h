@@ -14,6 +14,5 @@ class NAVMESHDEMO_API ADroneAIController : public AAIController
 {
 	GENERATED_BODY()
 
-protected:
-	virtual void BeginPlay() override;
+		void Tick(float DeltaTime) override;
 };

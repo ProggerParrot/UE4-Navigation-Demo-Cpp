@@ -1,7 +1,9 @@
 #include "DroneAIController.h"
+#include "Drone.h"
 
-void ADroneAIController::BeginPlay()
+
+void ADroneAIController::Tick(float DeltaTime)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Drone AI says - HELLO!"));
+	MoveToLocation(FVector(100.0f, 100.0f, 100.0f));
 
 }

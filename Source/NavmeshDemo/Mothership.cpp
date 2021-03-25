@@ -11,9 +11,6 @@
 #include "UObject/ConstructorHelpers.h"
 
 
-#include "Materials/MaterialInstanceDynamic.h" 
-
-
 AMothership::AMothership()
 {
 	PrimaryActorTick.bCanEverTick = true;

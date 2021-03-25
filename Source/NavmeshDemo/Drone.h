@@ -29,5 +29,6 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Drone")
 		UStaticMeshComponent* StaticMesh;
 
-
+	UPROPERTY(EditAnywhere, Category = "Drone")
+		class UFloatingPawnMovement* MovementComponent;
 };
