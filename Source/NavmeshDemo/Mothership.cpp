@@ -37,6 +37,9 @@ AMothership::AMothership()
 
 	DronesToSpawn = 25;
 	OrbitRadius = 1000.0f;
+
+
+	//OrbitComponent = CreateDefaultSubobject<UOrbitWaypointsComponent>("Orbit Waypoints");
 }
 
 
@@ -44,8 +47,11 @@ void AMothership::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//OrbitComponent->RegisterComponent();
 
-	for (int i = 0; i <= DronesToSpawn; ++i) {
+	//OrbitComponent->SpawnWaypoints(OrbitRadius, 360);
+
+	for (int i = 0; i < DronesToSpawn; ++i) {
 		SpawnDrone(i);
 	}
 }
@@ -85,10 +91,11 @@ void AMothership::SpawnDrone(int index)
 	Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	Params.bNoFail = true;
 	Params.Owner = this;
-	
-	ADrone* Drone = GetWorld()->SpawnActor<ADrone>(ADrone::StaticClass(), Transform, Params);
-}
 
+	ADrone* Drone = GetWorld()->SpawnActor<ADrone>(ADrone::StaticClass(), Transform, Params);
+
+	Drone->Mothership = this;
+}
 
 void AMothership::CheckFocusInRange()
 {
@@ -127,3 +134,5 @@ void AMothership::FocusEnemy(AActor* Target)
 	CurrentFokused = Target;
 	SetActorRotation(Target->GetActorLocation().Rotation());
 }
+
+

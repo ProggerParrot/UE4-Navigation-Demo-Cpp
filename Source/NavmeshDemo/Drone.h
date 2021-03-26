@@ -1,10 +1,15 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
+
+#include "Mothership.h"
+
+#include "GameFramework/FloatingPawnMovement.h"
+#include "Components/SphereComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Drone.generated.h"
+
 
 UCLASS()
 class NAVMESHDEMO_API ADrone : public APawn
@@ -19,12 +24,12 @@ protected:
 	//List of all private Functions
 	virtual void BeginPlay() override;
 
+	UFUNCTION()
+	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 public:	
 	//List of all public Functions
 	virtual void Tick(float DeltaTime) override;
-
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 
 protected:
@@ -33,5 +38,13 @@ protected:
 		UStaticMeshComponent* StaticMesh;
 
 	UPROPERTY(EditAnywhere, Category = "Drone")
-		class UFloatingPawnMovement* MovementComponent;
+		USphereComponent* SphereCollider;
+
+	UPROPERTY(EditAnywhere, Category = "Drone")
+		UFloatingPawnMovement* MovementComponent;
+
+public:
+
+	UPROPERTY(EditAnywhere, Category = "Drone")
+		AMothership* Mothership;
 };

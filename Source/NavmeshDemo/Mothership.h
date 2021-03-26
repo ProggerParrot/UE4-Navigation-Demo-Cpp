@@ -1,11 +1,10 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
+
+//#include "OrbitWaypointsComponent.h"
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Mothership.generated.h"
-
 
 
 UCLASS()
@@ -40,8 +39,8 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Mothership")
 		UStaticMeshComponent* StaticMesh;
 
-	UPROPERTY(EditAnywhere, Category = "Mothership")
-		TSubclassOf<class ADrone> DroneClass;
+	//UPROPERTY(EditAnywhere, Category = "Mothership")
+	//	UOrbitWaypointsComponent* OrbitComponent;
 
 	UPROPERTY(EditAnywhere, Category = "Mothership")
 		int DronesToSpawn;
@@ -49,9 +48,6 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Mothership")
 		double OrbitRadius;
 
-
-	UPROPERTY(EditAnywhere, Category = "Combat")
-		TSubclassOf<class ABullet> BulletClass;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 		class USphereComponent* Sphere;
