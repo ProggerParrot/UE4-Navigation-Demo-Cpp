@@ -2,6 +2,7 @@
 #include "DroneAIController.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
+
 #include "UObject/ConstructorHelpers.h"
 
 
@@ -13,8 +14,8 @@ ADrone::ADrone()
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> CylinderAsset(TEXT("/Engine/BasicShapes/Sphere"));
-	StaticMesh->SetStaticMesh(CylinderAsset.Object);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereAsset(TEXT("/Engine/BasicShapes/Sphere"));
+	StaticMesh->SetStaticMesh(SphereAsset.Object);
 
 
 	static ConstructorHelpers::FObjectFinder<UMaterial> MaterialAsset(TEXT("/Game/Materials/Drone"));

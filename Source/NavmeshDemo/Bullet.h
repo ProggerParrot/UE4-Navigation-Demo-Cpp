@@ -14,10 +14,20 @@ class NAVMESHDEMO_API ABullet : public AActor
 public:
 	ABullet();
 
+
 protected:
+	//List of all private Functions
 	virtual void BeginPlay() override;
 
+
 public:	
+	//List of all public Functions
 	virtual void Tick(float DeltaTime) override;
+
+
+protected:
+	//List of all UPropertys
+	UPROPERTY(EditAnywhere, Category = "Bullet")
+		UStaticMeshComponent* StaticMesh;
 
 };

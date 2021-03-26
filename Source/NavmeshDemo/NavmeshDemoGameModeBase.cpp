@@ -1,15 +1,15 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
-
-
 #include "NavmeshDemoGameModeBase.h"
 #include "DefaultPlayerController.h"
+#include "DefaultPlayerPawn.h"
 #include "Mothership.h"
 
 #include <ComponentReregisterContext.h>
 
+
 ANavmeshDemoGameModeBase::ANavmeshDemoGameModeBase()
 {
 	PlayerControllerClass = ADefaultPlayerController::StaticClass();
+	DefaultPawnClass = ADefaultPlayerPawn::StaticClass();
 }
 
 void ANavmeshDemoGameModeBase::BeginPlay()

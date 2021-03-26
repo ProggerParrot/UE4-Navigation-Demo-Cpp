@@ -14,15 +14,18 @@ class NAVMESHDEMO_API AEnemy : public APawn
 public:
 	AEnemy();
 
+
 protected:
 	//List of all private Functions
 	virtual void BeginPlay() override;
+
 
 public:	
 	//List of all public Functions
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
 
 protected:
 	//List of all UPropertys

@@ -14,5 +14,12 @@ class NAVMESHDEMO_API ADroneAIController : public AAIController
 {
 	GENERATED_BODY()
 
-		void Tick(float DeltaTime) override;
+public:
+	ADroneAIController();
+
+
+public:
+	//List of all public Functions
+	void Tick(float DeltaTime) override;
+
 };

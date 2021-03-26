@@ -14,15 +14,17 @@ class NAVMESHDEMO_API ADefaultPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-
 public:
+	ADefaultPlayerController();
 
-	virtual void SetupInputComponent() override;
 
-	
-private:
-
+protected:
+	//List of all private Functions
 	void SpawnEnemy();
 
+
+public:
+	//List of all public Functions
+	virtual void SetupInputComponent() override;
 
 };

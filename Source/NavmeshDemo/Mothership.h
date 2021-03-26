@@ -16,6 +16,7 @@ class NAVMESHDEMO_API AMothership : public APawn
 public:
 	AMothership();
 
+
 protected:
 	//List of all private Functions
 	virtual void BeginPlay() override;
